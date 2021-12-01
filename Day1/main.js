@@ -13,6 +13,6 @@ console.log(count);
 count = 0;
 for (let i = 0; i < lines.length - 3; i++)
 {
-	if (lines[i]+lines[i+1]+lines[i+2] < lines[i+1]+lines[i+2]+lines[i+3]) count++;
+	if (lines[i] < lines[i+3]) count++;
 }
 console.log(count);
