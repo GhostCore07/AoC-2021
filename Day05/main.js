@@ -51,8 +51,8 @@ for (let i = 0; i < lines.length; i++)
 	// comment this out for part one
 	else if (maxx - minx === maxy - miny)
 	{
-		const dx = Math.sign((x1 - x0) / (maxx - minx))
-		const dy = Math.sign((y1 - y0) / (maxy - miny))
+		const dx = (x1 - x0) / (maxx - minx)
+		const dy = (y1 - y0) / (maxy - miny)
 		for (let p = 0; p <= maxx-minx; p++)
 		{
 			bitmap[x0 + p*dx][y0 + p*dy]++;
