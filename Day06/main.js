@@ -20,7 +20,7 @@ function computeLanternFish(data, days)
 	{
 		count += fishes[i];
 	}
-	console.log(count)
+	console.log(count);
 }
 
 computeLanternFish(input_data, 80);

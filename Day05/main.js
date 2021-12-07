@@ -1,6 +1,6 @@
 import {input_data} from "./data.js"
 
-let lines = input_data.split("\n");
+const lines = input_data.split("\n");
 for (let i = 0; i < lines.length; i++)
 {
 	lines[i] = lines[i].split(" -> ");
@@ -10,7 +10,7 @@ for (let i = 0; i < lines.length; i++)
 	}
 }
 
-let bitmap = [];
+const bitmap = [];
 
 for (let x = 0; x < 1000; x++)
 {
