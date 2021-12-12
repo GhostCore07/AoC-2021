@@ -16,6 +16,7 @@ for (let y = 0; y < 100; y++)
 		if (checkLow(x, y)) part1 += lines[y][x] + 1;
 	}
 }
+console.log(part1)
 
 for (let y = 0; y < 100; y++)
 {
@@ -26,11 +27,7 @@ for (let y = 0; y < 100; y++)
 		if (current === 9) lines[y][x] = -1;
 	}
 }
-
-console.log(part1)
-
 const results = [];
-
 for (let y = 0; y < 100; y++)
 {
 	for (let x = 0; x < 100; x++ )
