@@ -1,4 +1,6 @@
 import {input_data} from "./data.js"
+
+// let lines = "620080001611562C8802118E34".split("").map(el => parseInt(el, 16).toString(2).padStart(4, "0")).join("");
 let lines = input_data.split("").map(el => parseInt(el, 16).toString(2).padStart(4, "0")).join("");
 
 // packet version (3 bits)
@@ -16,11 +18,15 @@ let lines = input_data.split("").map(el => parseInt(el, 16).toString(2).padStart
 let packets = [];
 let count = 0;
 
-console.log(readPacket(lines, 0, packets), lines.length)
+console.log(readPacket(lines, 0, packets))
+console.log(lines, lines.length);
+
 
 function readPacket(input, start=0, dest)
 {
-	// dest.push(packet);
+
+	let packet = [];
+	dest.push(packet);
 	let pointer = start;
 
 	function reads(n)
@@ -38,7 +44,7 @@ function readPacket(input, start=0, dest)
 
 	let pVer = readi(3)
 	count+=pVer;
-	// console.log("version: ", pVer)
+	console.log("version: ", pVer)
 
 	let tID = readi(3)
 
@@ -51,73 +57,42 @@ function readPacket(input, start=0, dest)
 			num = num + reads(4);
 		} while (flag === 1)
 		num = parseInt(num, 2);
-		dest.push(num)
-		// console.log("literal: ", num)
+		packet.push(num)
+		console.log("literal: ", num)
 	}
 	else
 	{
-		let packet = [];
 		let flag = readi(1);
 		if (flag === 1)
 		{
 			let val = readi(11);
-			// console.log ("sub packets: ", val)
+			console.log ("sub packets: ", val)
+			let subpacket = [];
+			packet.push(subpacket);
 			for (let i = 0; i < val; i++)
 			{
-				pointer = readPacket(input, pointer, packet)
+				pointer = readPacket(input, pointer, subpacket)
 			}
+			// console.log(val);
 		}
 		else
 		{
 			let val = readi(15);
-			// console.log("sub packet length: ", val)
-			let end = pointer + val
+			console.log("sub packet length: ", val)
+			let s = reads(val)
+			let subpacket = [];
+			packet.push(subpacket);
+			let tempPointer = 0;
 			do
 			{
-				pointer = readPacket(input, pointer, packet);
-			} while (pointer < end)
+				tempPointer = readPacket(s, tempPointer, subpacket);
+			} while (tempPointer < val)
 		}
-
-		let result = 0;
-		if (tID === 0) // sum
-		{
-			result = packet.reduce((a, b) => a + b)
-		}
-		else if (tID === 1) // product
-		{
-			result = packet.reduce((a, b) => a * b)
-		}
-		else if (tID === 2) // min
-		{
-			result = packet.reduce((a, b) => Math.min(a, b))
-		}
-		else if (tID === 3) // max
-		{
-			result = packet.reduce((a, b) => Math.max(a, b))	
-		}
-		else if (tID === 5) // greater than
-		{
-			let a = packet[0];
-			let b = packet[1];
-			result = a > b ? 1 : 0;
-		}
-		else if (tID === 6) // less than
-		{
-			let a = packet[0];
-			let b = packet[1];
-			result = a < b ? 1 : 0;
-		}
-		else if (tID === 7) // equal to
-		{
-			let a = packet[0];
-			let b = packet[1];
-			result = a === b ? 1 : 0;
-		}
-
-		dest.push(result);
 	}
 	return pointer;
 }
 
 console.log(packets)
 console.log(count)
+
+// 681
