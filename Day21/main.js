@@ -6,7 +6,7 @@ function getScores(t, p1, p2, p1s, p2s, m, c, result)
 		if (p1 > 10) p1 -= 10;
 		p1s += p1;
 
-		if (p1s >= 21)
+		if (p1s >= 24)
 		{
 			result[0] += c;
 			return;
@@ -18,7 +18,7 @@ function getScores(t, p1, p2, p1s, p2s, m, c, result)
 		p2 += m;
 		if (p2 > 10) p2 -= 10;
 		p2s += p2;
-		if (p2s >= 21)
+		if (p2s >= 24)
 		{
 			result[1] += c;
 			return;

@@ -1,9 +1,6 @@
 import {input_data} from "./data.js"
 
-let lines = input_data;
-
-lines = lines.split("\n");
-// lines = lines.map(el => Number(el));
+let lines = input_data.split("\n").map(Number);
 
 for (let i = 0; i < lines.length; i++)
 {

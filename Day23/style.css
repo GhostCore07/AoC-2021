@@ -1,0 +1,29 @@
+canvas#game{
+	/*height: calc(240px * 3);
+	width: calc(320px * 3);*/
+
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+
+	margin: auto;
+	display: block;
+
+	margin-top: 10px;
+	outline: none;
+}
+
+div#gameDiv{
+	display: :block; /*default value*/
+}
+
+body{
+	display: :block; /*default value*/
+	/*margin: 8px; default value*/
+	margin: 0px; /*remove 8px border*/
+	background-color: #AA00AA
+}
